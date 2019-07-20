@@ -1,4 +1,4 @@
-<div *ngIf="!ar.snapshot.params.id">
+<div>
   <app-simple-form
     [usage]="'list'"
     (add)="createList($event)"
@@ -12,10 +12,4 @@
       ></app-list>
     </div>
   </div>
-</div>
-
-<div *ngIf="ar.snapshot.params.id" >
-  <app-full-page-list
-    [list]="singleList"
-  ></app-full-page-list>
 </div>

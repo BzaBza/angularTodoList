@@ -1,0 +1,6 @@
+<div *ngIf="singleList">
+    <app-full-page-list
+            [list]="singleList"
+            (nextList)="navigateToNextList($event)"
+    ></app-full-page-list>
+</div>

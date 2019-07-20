@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +6,6 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private ar: ActivatedRoute, private route: Router) {
-  }
-
-  start() {
-    this.route
-      .navigate(['lists']);
+  constructor() {
   }
 }

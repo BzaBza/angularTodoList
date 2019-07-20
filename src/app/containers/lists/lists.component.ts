@@ -3,52 +3,44 @@ import {ListService} from '../../services/list.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-lists',
-  templateUrl: './lists.component.html',
-  styleUrls: ['./lists.component.scss']
+    selector: 'app-lists',
+    templateUrl: './lists.component.html',
+    styleUrls: ['./lists.component.scss']
 })
 export class ListsComponent implements OnInit {
-  singleList: any;
-  lists: any;
+    singleList: any;
+    lists: any;
 
-  constructor(private listService: ListService,
-              private ar: ActivatedRoute, private route: Router) {
-  }
-
-  ngOnInit() {
-    const listId = this.ar.snapshot.params.id;
-    if (listId === undefined) {
-      this.listService.getLists().subscribe(lists => {
-          this.lists = lists;
-        }
-      );
-    } else {
-      this.listService.getListById(listId).subscribe(list => {
-          this.singleList = list;
-        }
-      );
+    constructor(private listService: ListService,
+                private ar: ActivatedRoute, private route: Router) {
     }
-  }
 
-  removeCurrentList(listId, index) {
-    this.listService.removeList(listId).subscribe();
-    this.lists.splice(index, 1);
-  }
+    ngOnInit() {
+        this.listService.getLists().subscribe(lists => {
+                this.lists = lists;
+            }
+        );
+    }
 
-  createList(listName) {
-    const list = {listName};
-    this.listService.createList(list).subscribe(l => {
-      this.lists.push(l);
-    });
-  }
+    removeCurrentList(listId, index) {
+        this.listService.removeList(listId).subscribe();
+        this.lists.splice(index, 1);
+    }
 
-  navigateToList(id) {
-    this.route
-      .navigate(['lists', id])
-      .then(z => {
-        this.listService.getListById(id).subscribe(list => {
-          this.singleList = list;
+    createList(listName) {
+        const list = {listName};
+        this.listService.createList(list).subscribe(l => {
+            this.lists.push(l);
         });
-      });
-  }
+    }
+
+    navigateToList(id) {
+        this.route
+            .navigate(['lists', id])
+            .then(z => {
+                this.listService.getListById(id).subscribe(list => {
+                    this.singleList = list;
+                });
+            });
+    }
 }
